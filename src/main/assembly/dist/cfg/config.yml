@@ -1,0 +1,40 @@
+#
+# dd-manage-deposit configuration file
+#
+server:
+  applicationContextPath: /
+  adminContextPath: /
+  applicationConnectors:
+    - type: http
+      port: 20347
+  adminConnectors:
+    - type: http
+      port: 20348
+
+depositBoxes:
+  - /var/opt/dans.knaw.nl/tmp/auto-ingest/inbox
+  - /var/opt/dans.knaw.nl/tmp/auto-ingest/outbox/processed
+  - /var/opt/dans.knaw.nl/tmp/auto-ingest/outbox/rejected
+  - /var/opt/dans.knaw.nl/tmp/auto-ingest/outbox/failed
+  - /var/opt/dans.knaw.nl/tmp/sword2-uploads
+
+depositPropertiesDatabase:
+  driverClass: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/dd_manage_deposit
+  user: dd_manage_deposit
+  password: changeme
+  logValidationErrors: true
+  properties:
+    hibernate.dialect: 'org.hibernate.dialect.PostgreSQL95Dialect'
+    hibernate.hbm2ddl.auto: update
+
+#
+# See https://www.dropwizard.io/en/latest/manual/configuration.html#logging
+#
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      archive: false
+      timeZone: system
+      currentLogFilename: /var/opt/dans.knaw.nl/log/dd-manage-deposit/dd-manage-deposit.log

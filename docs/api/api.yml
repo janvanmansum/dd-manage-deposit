@@ -1,0 +1,67 @@
+openapi: 3.0.1
+
+servers:
+  - url: http://localhost:20347/
+
+info:
+  description: Service that manages and maintains information about deposits in a deposit area
+  version: 0.1.0
+  title: dd-manage-deposit
+  contact:
+    email: info@dans.knaw.nl
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+paths:
+  /:
+    get:
+      summary: Returns a description of the service.
+      responses:
+        200:
+          description: description of the service
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: a plain text, human readable description of the service
+                example: |
+                  DD Manage Deposit is running
+
+  /report:
+     get:
+       summary: Returns a deposit report
+       parameters:
+          - name: user
+            in: query
+            schema:
+              type: array
+              items:
+                type: string
+            explode: true
+            required: false
+          - name: state
+            in: query
+            schema:
+              type: array
+              items:
+                type: string
+            explode: true
+            required: false
+          - name: startdate
+            in: query
+            schema:
+                type: string
+          - name: enddate
+            in: query
+            schema:
+                type: string
+       responses:
+         200:
+          description: the requested report
+          content:
+            text/csv;charset=UTF-8:
+              schema:
+                 type: string
+                 description: a comma separated formatted report
+
