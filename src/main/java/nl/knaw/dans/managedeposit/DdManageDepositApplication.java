@@ -21,6 +21,8 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 public class DdManageDepositApplication extends Application<DdManageDepositConfiguration> {
+    private final DdManageDepositHibernateBundle hibernateBundle = new DdManageDepositHibernateBundle();
+
 
     public static void main(final String[] args) throws Exception {
         new DdManageDepositApplication().run(args);
@@ -28,12 +30,12 @@ public class DdManageDepositApplication extends Application<DdManageDepositConfi
 
     @Override
     public String getName() {
-        return "Dd Manage Deposit";
+        return "DD Manage Deposit";
     }
 
     @Override
     public void initialize(final Bootstrap<DdManageDepositConfiguration> bootstrap) {
-        // TODO: application initialization
+        bootstrap.addBundle(hibernateBundle);
     }
 
     @Override

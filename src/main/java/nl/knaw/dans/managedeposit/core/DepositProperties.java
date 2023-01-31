@@ -13,30 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package nl.knaw.dans.managedeposit.core;
 
-package nl.knaw.dans.managedeposit;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.dropwizard.Configuration;
-import io.dropwizard.db.DataSourceFactory;
+@Entity
+@Table(name = "deposit_properties")
+public class DepositProperties {
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+    @Id
+    @Column(name = "deposit_id", nullable = false)
+    private String depositId;
 
-public class DdManageDepositConfiguration extends Configuration {
-
-    @Valid
-    @NotNull
-    private DataSourceFactory database = new DataSourceFactory();
-
-
-    public DataSourceFactory getDepositPropertiesDatabase() {
-        return database;
+    public String getDepositId() {
+        return depositId;
     }
 
-    public void setDepositPropertiesDatabase(DataSourceFactory database) {
-        this.database = database;
+    public void setDepositId(String depositId) {
+        this.depositId = depositId;
     }
-
 }
