@@ -29,6 +29,8 @@ The service has the following interfaces.
 * _Internal or external_: **internal**
 * _Purpose_: Generating deposit reports and cleaning up the deposit area.
 
+See [API](./to-api.md) for details.
+
 #### Deposit boxes
 
 * _Protocol type_: Shared filesystem
